@@ -13,27 +13,31 @@ test('creates client', t => {
   t.end()
 })
 
-test('validates server not available', t => {
+test('validates server not available', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').rejects()
   const validate = client.validate()
-  t.rejects(validate).finally(() => {
+  try {
+    await t.rejects(validate)
+  } finally {
     stubGet.restore()
     t.end()
-  })
+  }
 })
 
-test('validates server is couch', t => {
+test('validates server is couch', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').resolves({ name: 'ChairDB server!' })
   const validate = client.validate()
-  t.rejects(validate).finally(() => {
+  try {
+    await t.rejects(validate)
+  } finally {
     stubGet.restore()
     t.end()
-  })
+  }
 })
 
-test('validates database create', t => {
+test('validates database create', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
@@ -44,14 +48,16 @@ test('validates database create', t => {
   })
   let stubPut = sinon.stub(axios, 'put').resolves()
   const validate = client.validate()
-  t.resolves(validate).finally(() => {
+  try {
+    await t.resolves(validate)
+  } finally {
     stubGet.restore()
     stubPut.restore()
     t.end()
-  })
+  }
 })
 
-test('validates database create error', t => {
+test('validates database create error', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
@@ -62,27 +68,31 @@ test('validates database create error', t => {
   })
   let stubPut = sinon.stub(axios, 'put').rejects()
   const validate = client.validate()
-  t.rejects(validate).finally(() => {
+  try {
+    await t.rejects(validate)
+  } finally {
     stubGet.restore()
     stubPut.restore()
     t.end()
-  })
+  }
 })
 
-test('validates server and db available', t => {
+test('validates server and db available', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     const response = (url.endsWith('/logs')) ? {} : { data: { couchdb: 'Welcome', version: '2.0.0' } }
     return Promise.resolve(response)
   })
   const validate = client.validate()
-  t.resolves(validate).finally(() => {
+  try {
+    await t.resolves(validate)
+  } finally {
     stubGet.restore()
     t.end()
-  })
+  }
 })
 
-test('validates db get error', t => {
+test('validates db get error', async t => {
   const client = new tested.Client()
   let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
@@ -92,10 +102,12 @@ test('validates db get error', t => {
     return Promise.resolve({ data: { couchdb: 'Welcome', version: '2.0.0' } })
   })
   const validate = client.validate()
-  t.rejects(validate).finally(() => {
+  try {
+    await t.rejects(validate)
+  } finally {
     stubGet.restore()
     t.end()
-  })
+  }
 })
 
 test('calls insert without document', t => {
@@ -106,14 +118,16 @@ test('calls insert without document', t => {
   })
 })
 
-test('errors on failed insert', t => {
+test('errors on failed insert', async t => {
   let client = new tested.Client()
   let stubPost = sinon.stub(axios, 'post').rejects()
   const insert = client.insert({ id: 'crazy invalid document' })
-  t.rejects(insert).finally(() => {
+  try {
+    await t.rejects(insert)
+  } finally {
     stubPost.restore()
     t.end()
-  })
+  }
 })
 
 test('inserts single document', t => {
