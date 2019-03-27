@@ -1,16 +1,18 @@
 'use strict'
 
-const couchdb = require('../src/couchdb')
+const pinoms = require('pino-multi-stream')
 
-async function main () {
-  const client = new couchdb.Client()
+var logger = pinoms({
+  streams: [{ stream: process.stdout }]
+})
+logger.level = 'trace'
 
-  await client.validate()
-  // await client.insert({ name: 'item 1' })
+logger.trace('trace message')
+logger.debug('debug message')
+logger.info('info message')
+logger.warn('warn message')
+logger.error(new Error('error message'))
+logger.fatal('fatal message')
 
-  let ws = client.insertStream()
-  ws.write({ id: 1 })
-  ws.end()
-}
-
-main()
+logger.trace({ labels: { foo: 'bar' } }, 'trace message')
+logger.error(new Error('things got bad'), 'error message')
