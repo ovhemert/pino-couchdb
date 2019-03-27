@@ -9,7 +9,7 @@ const pinoCouchDb = require('././index')
 function main () {
   program
     .version(pkg.version)
-    .option('-h, --host <url>', 'The url of the CouchDB host (defaults to "http://127.0.0.1:5984")')
+    .option('-u, --url <url>', 'The url of the CouchDB host (defaults to "http://127.0.0.1:5984")')
     .option('-d, --database <db>', 'The name of the database to use (defaults to "logs")')
     .option('-b, --batch <size>', 'Number of logs to group in a batch for a single write (defaults to "1")')
     .action(async ({ url, db, size }) => {
