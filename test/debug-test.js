@@ -8,7 +8,7 @@ async function main () {
   await client.validate()
   // await client.insert({ name: 'item 1' })
 
-  let ws = client.insertStream()
+  const ws = client.insertStream()
   ws.write({ id: 1 })
   ws.end()
 }

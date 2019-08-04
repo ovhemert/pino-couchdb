@@ -8,6 +8,7 @@ class Client {
     this._url = options.url || 'http://127.0.0.1:5984'
     this._db = options.db || 'logs'
   }
+
   async insert (items = []) {
     const docs = Array.isArray(items) ? items : [items]
     if (docs.length <= 0) { return }
@@ -20,14 +21,16 @@ class Client {
       throw Error(err.message)
     }
   }
+
   insertStream () {
     const self = this
-    let writeStream = new stream.Writable({ objectMode: true, highWaterMark: 1 })
+    const writeStream = new stream.Writable({ objectMode: true, highWaterMark: 1 })
     writeStream._write = function (chunk, encoding, callback) {
       self.insert(chunk).then(() => { callback(null) }).catch(callback)
     }
     return writeStream
   }
+
   async validate () {
     try {
       const server = (await axios.get(this._url)).data

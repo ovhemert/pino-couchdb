@@ -7,7 +7,7 @@ const sinon = require('sinon')
 const couchdb = require('../src/couchdb')
 
 test('creates write stream', t => {
-  let stubValidate = sinon.stub(couchdb.Client.prototype, 'validate').resolves()
+  const stubValidate = sinon.stub(couchdb.Client.prototype, 'validate').resolves()
   tested.createWriteStream().then(writeStream => {
     t.ok(writeStream.writable)
     stubValidate.restore()

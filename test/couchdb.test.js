@@ -4,7 +4,7 @@ const test = require('tap').test
 const tested = require('../src/couchdb')
 const sinon = require('sinon')
 
-let axios = require('axios')
+const axios = require('axios')
 
 test('creates client', t => {
   const client = new tested.Client()
@@ -15,7 +15,7 @@ test('creates client', t => {
 
 test('validates server not available', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').rejects()
+  const stubGet = sinon.stub(axios, 'get').rejects()
   const validate = client.validate()
   try {
     await t.rejects(validate)
@@ -27,7 +27,7 @@ test('validates server not available', async t => {
 
 test('validates server is couch', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').resolves({ name: 'ChairDB server!' })
+  const stubGet = sinon.stub(axios, 'get').resolves({ name: 'ChairDB server!' })
   const validate = client.validate()
   try {
     await t.rejects(validate)
@@ -39,14 +39,14 @@ test('validates server is couch', async t => {
 
 test('validates database create', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
+  const stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
-      let err = Error('Does not exist'); err.response = { status: 404 }
+      const err = Error('Does not exist'); err.response = { status: 404 }
       return Promise.reject(err)
     }
     return Promise.resolve({ data: { couchdb: 'Welcome', version: '2.0.0' } })
   })
-  let stubPut = sinon.stub(axios, 'put').resolves()
+  const stubPut = sinon.stub(axios, 'put').resolves()
   const validate = client.validate()
   try {
     await t.resolves(validate)
@@ -59,14 +59,14 @@ test('validates database create', async t => {
 
 test('validates database create error', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
+  const stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
-      let err = Error('Does not exist'); err.response = { status: 404 }
+      const err = Error('Does not exist'); err.response = { status: 404 }
       return Promise.reject(err)
     }
     return Promise.resolve({ data: { couchdb: 'Welcome', version: '2.0.0' } })
   })
-  let stubPut = sinon.stub(axios, 'put').rejects()
+  const stubPut = sinon.stub(axios, 'put').rejects()
   const validate = client.validate()
   try {
     await t.rejects(validate)
@@ -79,7 +79,7 @@ test('validates database create error', async t => {
 
 test('validates server and db available', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
+  const stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     const response = (url.endsWith('/logs')) ? {} : { data: { couchdb: 'Welcome', version: '2.0.0' } }
     return Promise.resolve(response)
   })
@@ -94,9 +94,9 @@ test('validates server and db available', async t => {
 
 test('validates db get error', async t => {
   const client = new tested.Client()
-  let stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
+  const stubGet = sinon.stub(axios, 'get').callsFake(async function (url) {
     if (url.endsWith('/logs')) {
-      let err = Error('Crazy error'); err.response = { status: 400 }
+      const err = Error('Crazy error'); err.response = { status: 400 }
       return Promise.reject(err)
     }
     return Promise.resolve({ data: { couchdb: 'Welcome', version: '2.0.0' } })
@@ -111,7 +111,7 @@ test('validates db get error', async t => {
 })
 
 test('calls insert without document', t => {
-  let client = new tested.Client()
+  const client = new tested.Client()
   client.insert().then(data => {
     t.equals(data, undefined)
     t.end()
@@ -119,8 +119,8 @@ test('calls insert without document', t => {
 })
 
 test('errors on failed insert', async t => {
-  let client = new tested.Client()
-  let stubPost = sinon.stub(axios, 'post').rejects()
+  const client = new tested.Client()
+  const stubPost = sinon.stub(axios, 'post').rejects()
   const insert = client.insert({ id: 'crazy invalid document' })
   try {
     await t.rejects(insert)
@@ -131,8 +131,8 @@ test('errors on failed insert', async t => {
 })
 
 test('inserts single document', t => {
-  let client = new tested.Client()
-  let stubPost = sinon.stub(axios, 'post').resolvesArg(1)
+  const client = new tested.Client()
+  const stubPost = sinon.stub(axios, 'post').resolvesArg(1)
   client.insert({ id: 1 }).then(data => {
     t.equals(data.docs.length, 1)
     t.equals(data.docs[0].id, 1)
@@ -142,8 +142,8 @@ test('inserts single document', t => {
 })
 
 test('inserts multiple documents', t => {
-  let client = new tested.Client()
-  let stubPost = sinon.stub(axios, 'post').resolvesArg(1)
+  const client = new tested.Client()
+  const stubPost = sinon.stub(axios, 'post').resolvesArg(1)
   client.insert([{ id: 1 }, { id: 2 }, { id: 3 }]).then(data => {
     t.equals(data.docs.length, 3)
     t.equals(data.docs[0].id, 1)
@@ -155,9 +155,9 @@ test('inserts multiple documents', t => {
 })
 
 test('inserts with write stream', t => {
-  let client = new tested.Client()
-  let stubPost = sinon.stub(axios, 'post')
-  let ws = client.insertStream()
+  const client = new tested.Client()
+  const stubPost = sinon.stub(axios, 'post')
+  const ws = client.insertStream()
   ws.write({ id: 1 })
   ws.end()
   t.ok(stubPost.called)
