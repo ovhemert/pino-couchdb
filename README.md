@@ -4,7 +4,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/20e80d7bc7cf4f81aa4005d1e43be88b)](https://www.codacy.com/app/ovhemert/pino-couchdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ovhemert/pino-couchdb&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-couchdb/badge.svg)](https://snyk.io/test/npm/pino-couchdb)
 [![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-couchdb/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-couchdb?branch=master)
-
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 This module provides a "transport" for [pino][pino] that forwards messages to a [CouchDB][couchdb] database.
