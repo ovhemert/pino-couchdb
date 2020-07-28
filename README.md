@@ -1,6 +1,6 @@
 # pino-couchdb
 
-[![Travis](https://img.shields.io/travis/com/ovhemert/pino-couchdb.svg?branch=master&logo=travis)](https://travis-ci.com/ovhemert/pino-couchdb)
+[![CI](https://github.com/ovhemert/pino-couchdb/workflows/CI/badge.svg)](https://github.com/ovhemert/pino-couchdb/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/20e80d7bc7cf4f81aa4005d1e43be88b)](https://www.codacy.com/app/ovhemert/pino-couchdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ovhemert/pino-couchdb&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-couchdb/badge.svg)](https://snyk.io/test/npm/pino-couchdb)
 [![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-couchdb/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-couchdb?branch=master)
