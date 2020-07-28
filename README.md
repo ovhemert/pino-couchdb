@@ -1,6 +1,6 @@
 # pino-couchdb
 
-[![Travis](https://img.shields.io/travis/com/ovhemert/pino-couchdb.svg?branch=master&logo=travis)](https://travis-ci.com/ovhemert/pino-couchdb)
+[![CI](https://github.com/ovhemert/pino-couchdb/workflows/CI/badge.svg)](https://github.com/ovhemert/pino-couchdb/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/20e80d7bc7cf4f81aa4005d1e43be88b)](https://www.codacy.com/app/ovhemert/pino-couchdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ovhemert/pino-couchdb&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/npm/pino-couchdb/badge.svg)](https://snyk.io/test/npm/pino-couchdb)
 [![Coverage Status](https://coveralls.io/repos/github/ovhemert/pino-couchdb/badge.svg?branch=master)](https://coveralls.io/github/ovhemert/pino-couchdb?branch=master)
@@ -13,13 +13,13 @@ This module provides a "transport" for [pino][pino] that forwards messages to a 
 To use globally from command line:
 
 ```bash
-$ npm install -g pino-couchdb
+npm install -g pino-couchdb
 ```
 
 To include as a library in your project:
 
 ```bash
-$ npm install pino-couchdb
+npm install pino-couchdb
 ```
 
 ## CLI
@@ -40,7 +40,7 @@ Osmond van Hemert
 
 ## Contributing
 
-If you would like to help out with some code, check the [details](./docs/CONTRIBUTING.md).
+If you would like to help out with some code, check the [details](./.github/CONTRIBUTING.md).
 
 Not a coder, but still want to support? Have a look at the options available to [donate](https://ovhemert.dev/donate).
 

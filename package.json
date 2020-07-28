@@ -1,6 +1,6 @@
 {
   "name": "pino-couchdb",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "A transport for pino that sends messages to CouchDB",
   "homepage": "https://github.com/ovhemert/pino-couchdb",
   "main": "src/index.js",
@@ -36,15 +36,15 @@
     "test"
   ],
   "devDependencies": {
-    "pino-multi-stream": "^4.3.0",
-    "sinon": "^9.0.1",
-    "standard": "^14.3.3",
-    "tap": "^14.10.6"
+    "pino-multi-stream": "^5.1.1",
+    "sinon": "^9.0.2",
+    "standard": "^14.3.4",
+    "tap": "^14.10.8"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "batch2": "^1.0.6",
-    "commander": "^5.1.0",
+    "commander": "^6.0.0",
     "fast-json-parse": "^1.0.3",
     "pumpify": "^2.0.1",
     "split2": "^3.1.1",

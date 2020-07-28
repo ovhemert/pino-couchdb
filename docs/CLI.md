@@ -3,7 +3,7 @@
 To use `pino-couchdb` from the command line, you need to install it globally:
 
 ```bash
-$ npm install -g pino-couchdb
+npm install -g pino-couchdb
 ```
 
 ## Example
@@ -11,7 +11,7 @@ $ npm install -g pino-couchdb
 Given an application `foo` that logs via pino, a couchdb log database `bar` on the local machine, you would use `pino-couchdb` like so:
 
 ```bash
-$ node foo | pino-couchdb --database bar
+node foo | pino-couchdb --database bar
 ```
 
 ## Usage
