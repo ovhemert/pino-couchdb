@@ -13,13 +13,13 @@ This module provides a "transport" for [pino][pino] that forwards messages to a 
 To use globally from command line:
 
 ```bash
-$ npm install -g pino-couchdb
+npm install -g pino-couchdb
 ```
 
 To include as a library in your project:
 
 ```bash
-$ npm install pino-couchdb
+npm install pino-couchdb
 ```
 
 ## CLI
